@@ -1,6 +1,8 @@
 # heatRate
 Inspired by this post at [Goodfil.ms](http://goodfil.ms/blog/posts/2012/08/22/why-ratings-systems-dont-work/), heatRate is a simple jQuery plugin that can be used instead of typical 5-star ratings. The goal of heatRate is to let the user see exactly how ratings are made up, rather than just showing averages; all the while keeping the visualization concise, in-line, and flexible. It works best with varied data points.
 
+<img src="http://f.cl.ly/items/0O2m3s2k0h2d2K2e0d0Q/Image%202012.08.24%205:34:34%20PM.png" />
+
 heatRate just takes a simple 1-dimensional array of your data (any size), and will create a heatmap-like display out of it in HTML and CSS gradients.
 
 ## Usage
