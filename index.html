@@ -1,43 +1,23 @@
 <html>
 <head>
-  <title>Heat Rate</title>
-  <script src='js/jquery-1.8.0.js'></script>
-  <script src="js/jquery.heatrate.js"></script>
+  <title>heatRate</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src='jquery-1.8.0.js'></script>
+  <script src="jquery.heatrate.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-      var array = [2, 8, 1, 10, 5];
+      var ratingArray = [100, 8, 18, 154, 2];
 
       $('#heatrate').heatRate({
-        hue: 150,
-        range: -360,
-        start: 0,
+        hue: 180,
+        range: -260,
+        start: 180,
         build: 'hue',
         labels: true,
-        data: array
+        data: ratingArray
       });
     });
   </script>
-  <style type="text/css">
-    #heatrate{
-      height:20px;
-      width: 200px;
-      border: solid 1px #333;
-      margin: 100px auto;
-    }
-    #heatrate div{
-      display: inline-block;
-      border-right: dotted 1px #999;
-      box-sizing: border-box;
-      height: 100%;
-      float: left;
-    }
-    #heatrate span{
-      font:10px Helvetica, Arial, sans-serif;
-    }
-    #heatrate div:last-child{
-      border: none;
-    }
-  </style>
 </head>
 <body>
   <div id="heatrate">

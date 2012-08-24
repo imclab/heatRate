@@ -74,18 +74,18 @@
 
       // builds out the gradient for the rater
       stopIterator: function(_this){
-        var count = 0;
         colorArray = methods.createColorArray(settings.build);
-        ratingSteps = 100 / (settings.data.length - 1);
+        ratingStep = 100 / (settings.data.length - 1);
+        ratingIndex = 0;
 
-        for ( var i = 0; i <= 100; i += ratingSteps) {
-          stops = stops.concat( methods.setStop(Math.floor(i), colorArray[count]) );
-          settings.labels === true ? methods.buildLabels(_this, count+1, i) : null;
-          i != 100 ? stops = stops.concat( ', ' ) : null;
-          if(i < 100 - ratingSteps){
-            settings.lines === true ? methods.measureLines(_this, count) : null;
+        for ( var i = 0; i < settings.data.length; i++) {
+          stops = stops.concat( methods.setStop(Math.floor(ratingIndex), colorArray[i]) );
+          settings.labels === true ? methods.buildLabels(_this, i+1, ratingIndex) : null;
+          ratingIndex < 100 ? stops = stops.concat( ', ' ) : null;
+          if(i+2 < settings.data.length){
+            settings.lines === true ? methods.measureLines(_this, i) : null;
           }
-          count++;
+          ratingIndex += ratingStep;
         }
       },
 
@@ -93,9 +93,10 @@
       measureLines: function(_this, count){
         div = document.createElement('div');
         _this.append(div);
-        $(div).css('width', ratingSteps+'%');
+        $(div).css('width', ratingStep+'%');
       },
 
+      //build out labels for the measures
       buildLabels: function(_this, label, position){
         rateLabel = document.createElement('span');
         _this.append(rateLabel);
@@ -110,6 +111,7 @@
         });
       },
 
+      // initialize the gradient
       init: function(_this){
         methods.stopIterator(_this);
         _this.css('background','-webkit-linear-gradient(left, '+ stops +')');
