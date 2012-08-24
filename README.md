@@ -5,12 +5,14 @@ heatRate just takes a simple 1-dimensional array of your data (any size), and wi
 
 ## Usage
 Just link to the script in your HTML, and pick the div you want to turn into a heatmap. The only required option is the array that you would like to pass to heatRate.
+
     $('#heatrate').heatRate({
       data: ratingArray
     })
 
 ### Options
 More documentation to come soon...
+
     {
       hue         :  180,
       saturation  :  100,
