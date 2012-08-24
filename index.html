@@ -5,7 +5,21 @@
   <script src="js/jquery.heatrate.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#heatrate').heatRate();
+
+      var json = {
+        '1': 2,
+        '2': 5,
+        '3': 1,
+        '4': 2,
+        '5': 0
+      }
+
+      var array = [2, 8, 1, 10, 5];
+
+      $('#heatrate').heatRate({
+        hue: 30,
+        data: array
+      });
     });
   </script>
   <style type="text/css">
@@ -15,9 +29,17 @@
       border: solid 1px #333;
       margin: 100px auto;
     }
+    #heatrate div{
+      display: inline-block;
+      border-right: dashed 1px #333;
+      width: 20%;
+      height: 100%;
+      float: left;
+    }
   </style>
 </head>
 <body>
-  <div id="heatrate"></div>
+  <div id="heatrate">
+  </div>
 </body>
 </html>
