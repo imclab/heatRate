@@ -8,9 +8,11 @@
       'lightness'   :  50,
       'alpha'       :  1,
       'orientation' :  'horizontal',
-      'build'       :  'saturation',
+      'build'       :  'hue',
       'range'       :  100,
-      'start'       :  0
+      'start'       :  0,
+      'lines'       :  true,
+      'labels'      :  false
     }, options);
 
     // getter/setter for the gradient stops
@@ -67,31 +69,54 @@
 
       // method to create the individual stop string
       setStop: function(stopPercentage, stopColor){
-        return 'color-stop('+stopPercentage+'%, '+ stopColor +')';
+        return stopColor+' '+stopPercentage+'%';
       },
 
       // builds out the gradient for the rater
       stopIterator: function(_this){
-        count = 0;
+        var count = 0;
         colorArray = methods.createColorArray(settings.build);
-        ratingSteps = 100 / settings.data.length;
+        ratingSteps = 100 / (settings.data.length - 1);
 
-        for ( var i = ratingSteps; i <= 100; i += ratingSteps) {
+        for ( var i = 0; i <= 100; i += ratingSteps) {
           stops = stops.concat( methods.setStop(Math.floor(i), colorArray[count]) );
-          if(i != 100){
-            stops = stops.concat( ', ' );
-            _this.append(document.createElement('div'));
+          settings.labels === true ? methods.buildLabels(_this, count+1, i) : null;
+          i != 100 ? stops = stops.concat( ', ' ) : null;
+          if(i < 100 - ratingSteps){
+            settings.lines === true ? methods.measureLines(_this, count) : null;
           }
           count++;
         }
       },
 
+      // create lines to show the ratings
+      measureLines: function(_this, count){
+        div = document.createElement('div');
+        _this.append(div);
+        $(div).css('width', ratingSteps+'%');
+      },
+
+      buildLabels: function(_this, label, position){
+        rateLabel = document.createElement('span');
+        _this.append(rateLabel);
+        $(rateLabel).text(label);
+        _this.css({
+          'position' : 'relative'
+        });
+        $(rateLabel).css({
+          'position': 'absolute',
+          'top': '100%',
+          'left': position+'%'
+        });
+      },
+
       init: function(_this){
         methods.stopIterator(_this);
-        //_this.css('filter','progid:DXImageTransform.Microsoft.gradient(startColorstr=\'#FFFFFF\', endColorstr=\'#333333\', gradientType=1)');
-        _this.css('background','-webkit-gradient(linear, left top, right top, '+ stops +')');
-        //_this.css('background-image','-moz-linear-gradient(top left, #FFFFFF 0%, #333333 100%)');
-        //_this.css('background-image','-o-linear-gradient(top left, #FFFFFF 0%, #333333 100%)');
+        _this.css('background','-webkit-linear-gradient(left, '+ stops +')');
+        _this.css('background','-moz-linear-gradient(left, '+ stops +')');
+        _this.css('background','-o-linear-gradient(left, '+ stops +')');
+        _this.css('background','-ms-linear-gradient(left, '+ stops +')');
+        _this.css('background','linear-gradient(to right, '+ stops +')');
       }
     };
 

@@ -5,19 +5,14 @@
   <script src="js/jquery.heatrate.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-
-      var json = {
-        '1': 2,
-        '2': 5,
-        '3': 1,
-        '4': 2,
-        '5': 0
-      }
-
       var array = [2, 8, 1, 10, 5];
 
       $('#heatrate').heatRate({
-        hue: 30,
+        hue: 150,
+        range: -360,
+        start: 0,
+        build: 'hue',
+        labels: true,
         data: array
       });
     });
@@ -31,10 +26,16 @@
     }
     #heatrate div{
       display: inline-block;
-      border-right: dashed 1px #333;
-      width: 20%;
+      border-right: dotted 1px #999;
+      box-sizing: border-box;
       height: 100%;
       float: left;
+    }
+    #heatrate span{
+      font:10px Helvetica, Arial, sans-serif;
+    }
+    #heatrate div:last-child{
+      border: none;
     }
   </style>
 </head>
