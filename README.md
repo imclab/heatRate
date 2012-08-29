@@ -40,6 +40,9 @@ Defaults are shown below:
 * `lines` - a boolean that adds `<div>` within the containing element. These can be styled to show where the data points are.
 * `labels` - a boolean that if true, will add number labels to the order of data points.
 
+## Compatibility
+This baby is probably not gonna work too well in IE8 or lower.
+
 ## Creator
 [Ted O'Meara](http://www.intridea.com/about/team/ted-o-meara)
 
